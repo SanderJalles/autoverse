@@ -20,6 +20,20 @@ export const getBrandById = async (id: string) => {
   });
 };
 
+export const updateBrand = async (
+  id: string,
+  data: {
+    name?: string;
+    country?: string;
+    logoUrl?: string;
+  }
+) => {
+  return prisma.brand.update({
+    where: { id },
+    data,
+  });
+};
+
 export const deleteBrand = async (id: string) => {
   return prisma.brand.delete({
     where: { id },

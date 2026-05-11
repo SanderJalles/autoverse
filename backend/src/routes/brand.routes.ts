@@ -6,6 +6,7 @@ const router = Router();
 router.post("/", BrandController.create);
 router.get("/", BrandController.list);
 router.get("/:id", BrandController.getById);
+router.put("/:id", BrandController.update);
 router.delete("/:id", BrandController.remove);
 
 export default router;

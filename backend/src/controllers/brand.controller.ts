@@ -3,6 +3,7 @@ import {
   createBrand,
   getBrands,
   getBrandById,
+  updateBrand,
   deleteBrand,
 } from "../services/brand.service";
 
@@ -22,6 +23,11 @@ type BrandParams = {
 
 export const getById = async (req: Request<BrandParams>, res: Response) => {
   const brand = await getBrandById(req.params.id);
+  return res.json(brand);
+};
+
+export const update = async (req: Request<BrandParams>, res: Response) => {
+  const brand = await updateBrand(req.params.id, req.body);
   return res.json(brand);
 };
 
