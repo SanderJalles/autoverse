@@ -2,6 +2,7 @@ import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
 import brandRoutes from "./routes/brand.routes";
+import carRoutes from "./routes/car.routes";
 
 dotenv.config();
 
@@ -18,6 +19,8 @@ app.get("/health", (req, res) => {
 });
 
 app.use("/brands", brandRoutes);
+app.use("/cars", carRoutes);
+
 const PORT = process.env.PORT || 3333;
 
 app.listen(PORT, () => {
