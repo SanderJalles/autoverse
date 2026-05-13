@@ -4,6 +4,7 @@ export const createBrand = async (data: {
   name: string;
   country?: string;
   logoUrl?: string;
+  introVideoUrl?: string;
 }) => {
   return prisma.brand.create({
     data,
@@ -26,6 +27,7 @@ export const updateBrand = async (
     name?: string;
     country?: string;
     logoUrl?: string;
+    introVideoUrl?: string;
   }
 ) => {
   return prisma.brand.update({

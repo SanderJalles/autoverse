@@ -1,5 +1,8 @@
 node_modules/
 dist/
+.next/
 .env
 .env.*
+!.env.local.example
 npm-debug.log*
+backend/prisma/seed.ts

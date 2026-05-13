@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { BrandLogo } from "@/components/brands/BrandLogo";
 import type { Brand } from "@/types/brand";
 
 type BrandCardProps = {
@@ -12,9 +13,7 @@ export function BrandCard({ brand }: BrandCardProps) {
       className="group block rounded-md border border-[var(--line)] bg-[var(--surface)] p-5 shadow-sm transition hover:-translate-y-0.5 hover:border-[#9ccdc6] hover:shadow-md"
     >
       <div className="flex items-center gap-4">
-        <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-md bg-[#e7f3f1] text-lg font-bold text-[var(--accent-strong)]">
-          {brand.name.slice(0, 1)}
-        </div>
+        <BrandLogo brand={brand} />
         <div>
           <h2 className="text-lg font-semibold text-[var(--foreground)]">
             {brand.name}

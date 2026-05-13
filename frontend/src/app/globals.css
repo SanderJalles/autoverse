@@ -10,6 +10,11 @@
   --accent-strong: #115e59;
 }
 
+::selection {
+  background: #0f766e;
+  color: #ffffff;
+}
+
 * {
   box-sizing: border-box;
 }
@@ -24,6 +29,7 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+  text-rendering: geometricPrecision;
 }
 
 a {

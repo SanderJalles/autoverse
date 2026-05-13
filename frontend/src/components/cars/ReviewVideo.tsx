@@ -1,3 +1,5 @@
+import { getYouTubeEmbedUrl } from "@/lib/media";
+
 type ReviewVideoProps = {
   videoUrl: string | null;
 };
@@ -11,11 +13,14 @@ export function ReviewVideo({ videoUrl }: ReviewVideoProps) {
     );
   }
 
+  const embedUrl = getYouTubeEmbedUrl(videoUrl);
+  const src = embedUrl || videoUrl;
+
   return (
     <div className="overflow-hidden rounded-md border border-[var(--line)] bg-black">
       <iframe
         className="aspect-video w-full"
-        src={videoUrl}
+        src={src}
         title="Review do carro"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
         allowFullScreen

@@ -1,7 +1,8 @@
 import Link from "next/link";
-import type { Car } from "@/types/car";
-import { formatCurrency } from "@/lib/media";
+import { CarVisual } from "@/components/cars/CarVisual";
 import { Badge } from "@/components/ui/Badge";
+import { formatCurrency } from "@/lib/media";
+import type { Car } from "@/types/car";
 
 type CarCardProps = {
   car: Car;
@@ -21,13 +22,7 @@ export function CarCard({ car, dark = false }: CarCardProps) {
           : "border-[var(--line)] bg-white text-[var(--foreground)] shadow-sm hover:shadow-md"
       }`}
     >
-      <div
-        className={`flex aspect-[16/9] items-center justify-center ${
-          dark ? "bg-black/30" : "bg-[#dfe8f2]"
-        }`}
-      >
-        <span className="text-4xl font-bold opacity-50">{car.name.slice(0, 1)}</span>
-      </div>
+      <CarVisual name={car.name} imageUrl={car.imageUrl} dark={dark} />
       <div className="p-4">
         <div className="flex flex-wrap gap-2">
           <Badge tone={dark ? "dark" : "accent"}>{car.category}</Badge>
@@ -36,7 +31,7 @@ export function CarCard({ car, dark = false }: CarCardProps) {
         </div>
         <h3 className="mt-4 text-lg font-bold">{car.name}</h3>
         <p className={`mt-1 text-sm ${dark ? "text-white/70" : "text-[var(--muted)]"}`}>
-          {car.year} · {formatCurrency(car.averagePrice)}
+          {car.year} - {formatCurrency(car.averagePrice)}
         </p>
       </div>
     </Link>

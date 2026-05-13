@@ -1,4 +1,6 @@
 import Link from "next/link";
+import { notFound } from "next/navigation";
+import { CarVisual } from "@/components/cars/CarVisual";
 import { ReviewVideo } from "@/components/cars/ReviewVideo";
 import { SpecsTable } from "@/components/cars/SpecsTable";
 import { AppHeader } from "@/components/layout/AppHeader";
@@ -15,6 +17,10 @@ type CarPageProps = {
 export default async function CarPage({ params }: CarPageProps) {
   const { id } = await params;
   const car = await getCarDetails(id);
+
+  if (!car) {
+    notFound();
+  }
 
   return (
     <main className="min-h-screen bg-[var(--background)]">
@@ -43,16 +49,36 @@ export default async function CarPage({ params }: CarPageProps) {
                 {formatCurrency(car.averagePrice)}
               </p>
             </div>
+            {car.specs ? (
+              <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
+                <div className="rounded-md border border-[var(--line)] px-4 py-3">
+                  <p className="text-xs font-semibold text-[var(--muted)]">Potencia</p>
+                  <p className="mt-1 text-lg font-bold">
+                    {car.specs.combinedHorsepower ?? car.specs.horsepower} cv
+                  </p>
+                </div>
+                <div className="rounded-md border border-[var(--line)] px-4 py-3">
+                  <p className="text-xs font-semibold text-[var(--muted)]">Tracao</p>
+                  <p className="mt-1 text-lg font-bold">
+                    {car.specs.drivetrain ?? "-"}
+                  </p>
+                </div>
+                <div className="rounded-md border border-[var(--line)] px-4 py-3">
+                  <p className="text-xs font-semibold text-[var(--muted)]">Cambio</p>
+                  <p className="mt-1 text-lg font-bold">
+                    {car.specs.transmission ?? "-"}
+                  </p>
+                </div>
+              </div>
+            ) : null}
           </div>
         </div>
       </section>
 
       <section className="mx-auto grid max-w-6xl gap-6 px-6 py-8 lg:grid-cols-[1.2fr_0.8fr]">
         <div className="space-y-6">
-          <div className="flex aspect-[16/9] items-center justify-center rounded-md border border-[var(--line)] bg-[#dfe8f2]">
-            <span className="text-6xl font-bold text-[#8293a8]">
-              {car.name.slice(0, 1)}
-            </span>
+          <div className="overflow-hidden rounded-md border border-[var(--line)]">
+            <CarVisual name={car.name} imageUrl={car.imageUrl} size="hero" />
           </div>
 
           <section className="rounded-md border border-[var(--line)] bg-white p-5">

@@ -20,7 +20,7 @@ export function getBrands() {
 }
 
 export function getBrand(id: string) {
-  return request<Brand>(`/brands/${id}`);
+  return request<Brand | null>(`/brands/${id}`);
 }
 
 export function getCarsByBrand(brandId: string) {
@@ -28,5 +28,5 @@ export function getCarsByBrand(brandId: string) {
 }
 
 export function getCarDetails(id: string) {
-  return request<Car>(`/cars/${id}/details`);
+  return request<Car | null>(`/cars/${id}/details`);
 }
